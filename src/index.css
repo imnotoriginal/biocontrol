@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --col1: #1D1D27; /* background black */
+  --col2: #FFFFFF; /* background white */
+  --col3: #E8ECF2; /* border lightgray*/
+  --col4: #140F26; /* font-black */
+  --col5: #14D2B8; /* green highlight color */
+  --col6: #F36187; /* red highlight color */
+  --col7: #645AFF; /* violet button color */
+}
+
+html, body {
+  height: 100%;
+  max-width: 100vw;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  padding: 12px;
+  margin: 0;
+}
+
+#root {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  color: var(--col4);
+  font-weight: lighter;
+
+  height: 100%;
+}
+
+main {
+  height: calc(100% - 134px);
+  overflow-y: scroll;
+  padding: 16px;
+}
+
+.Bottom-menu {
+  border-top: 1px solid #E6EAEA;
+  height: 56px;
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #fcfcfc;
+}
+
+.Bottom-menu-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Bottom-menu-tab_active {
+  color: var(--col5);
+}
+
+.Bottom-menu-tab__text {
+  padding-top: 4px;
+  font-size: 0.75rem;
+}
+
+.navigation {
+  background-color: #1D1D27;
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navigation__title {
+  color: var(--col2);
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+form {
+  width: 100%;
+}
+
+label, .label {
+  font-size: 0.875rem;
+  color: var(--col1);
+}
+
+input {
+  width: 100%;
+  border: 1px solid #E6EAEA;
+  padding: 12px;
+  outline: none;
+  margin-bottom: 16px;
+}
+
+input[type="radio"] {
+  width: auto;
+}
+
+.card {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  padding: 24px 16px;
+  border-radius: 4px;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.card:active {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.card:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.card__subtitle {
+  color: gray;
+  font-size: 0.875rem;
+  display: block;
+  padding-bottom: 6px;
+}
+
+.card__time {
+  color: dimgray;
+  font-size: 1.875rem;
+  margin: 0;
+}
+
+button {
+  border: none;
+  display: block;
+  width: 100%;
+  height: 64px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 64px;
+  color: white;
+  text-transform: uppercase;
+  background-color: #49c5b6;
+  outline: none;
+  -moz-user-select: none;
+  user-select: none;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+button:active {
+  background-color: #42AB9E;
+}
+
+.button_secondary {
+  color: #202121;
+  border: 1px solid #202121;
+  background-color: white;
+}
+
+.button_secondary:active {
+  background-color: #fcfcfc;
+}
+
+.form-group {
+  padding-left: 24px;
+}
+
+.text-size-bug-fix {
+  font-size: 0.85rem;
+}
+
+.message {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #E6EAEA;
+  background-color: #fcfcfc;
+  height: 56px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  transition: .2s all ease-in-out;
+}
+
+.message_hidden {
+  bottom: -56px;
+}
+
+.block {
+  padding: 12px;
+  color: #202121;
+  border: 1px solid #202121;
+  border-bottom: none;
+  background-color: #fcfcfc;
+}
+
+.block__title {
+  font-weight: bold;
+  padding: 12px;
+  text-align: center;
+}
+
+.block__text {
+  font-size: 0.875rem;
+  padding: 6px;
+}
+
+.block__value {
+  font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f7f6;
+  }
+
+  #root {
+    background-color: white;
+    box-shadow: 0 0 12px rgba(0,0,0,0.25);
+    width: 512px;
+    height: 100%;
+  }
+
+  .block__title {
+    font-size: 1.2rem;
+  }
+
+  .block__text {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  .text-size-bug-fix {
+    font-size: inherit;
+  }
+}
