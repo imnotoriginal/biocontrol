@@ -6,7 +6,7 @@ import initialState from "./store/initialState";
 import Nav from "./components/Nav";
 import BottomMenu from "./components/BottomMenu";
 import Settings from "./components/Settings";
-import Cycles from "./components/Cycles";
+import CyclesPage from "./components/CyclesPage";
 import StateController from "./components/StateController";
 import DefineChronotype from "./components/DefineChronotype";
 import Message from "./components/Message";
@@ -18,7 +18,7 @@ const App = () => (
     <Provider initialState={initialState} reducer={reducers}>
       <Nav/>
       <main>
-        <Route path="/" component={Cycles} exact/>
+        <Route path="/" component={CyclesPage} exact/>
         <Route path="/settings" component={Settings} exact/>
         <Route path="/definechronotype" component={DefineChronotype} exact/>
         <Message/>

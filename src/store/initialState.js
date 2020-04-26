@@ -5,7 +5,10 @@ let state = {
         singleCycleTime: 90,
     },
     cycles: {
-        lastTimeCheckUp: 0,
+        timeToWakeUp: {
+            hours: 0,
+            minutes: 0,
+        },
         advices: [],
     },
     chronotype: {
@@ -16,12 +19,19 @@ let state = {
         text: "",
         show: false
     },
+    notification: {
+        timeOutKey: 0,
+        permission: null
+    },
     debug: false,
+    version: [1,0,0]
 }
 
-if(window && window.localStorage && !state.debug) {
+if (window && window.localStorage && !state.debug) {
     const savedState = window.localStorage.getItem('app-state');
-    if(savedState !== null) state = JSON.parse(savedState);
+    if ((savedState !== null) && savedState.version && savedState.version[0] >= state.version[0]) {
+        state = JSON.parse(savedState);
+    }
 }
 
 export default state;
