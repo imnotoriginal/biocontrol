@@ -10,7 +10,7 @@ const Cycles = ({ advices, alertMessage, planNotification }) => {
             {advices.map((cycle, index) => (
                 <CycleCard count={index + 1} cycle={cycle} key={index} onClickHandler={() => {
                     planNotification(cycle.timeout)
-                    alertMessage("Уведомление уствновлено")
+                    alertMessage("Уведомление устaновлено");
                 }} />
             ))}
         </>

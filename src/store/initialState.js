@@ -20,17 +20,30 @@ let state = {
         show: false
     },
     notification: {
-        timeOutKey: 0,
+        timeoutKey: 0,
     },
-    debug: false,
-    version: [1,0,0]
+    load: true,
+    version: [1,0,1]
 }
 
-if (window && window.localStorage && !state.debug) {
+const checkVersions = (v1, v2) => {
+    v1 = v1[0] * 100 + v1[1] * 10 + v1[2];
+    v2 = v2[0] * 100 + v2[1] * 10 + v2[2];
+    return v1 >= v2;
+}
+
+if (window && window.localStorage && state.load) {
     const savedState = JSON.parse(window.localStorage.getItem('app-state'));
-    if ((savedState !== null) && (savedState.version !== undefined) && savedState.version[0] >= state.version[0]) {
-        state = savedState;
+    if (savedState !== null) {
+        if ((savedState.version !== undefined) && checkVersions(savedState.version, state.version)) {
+            state = savedState;
+            console.log("[debug]: Load state from localStorage.")
+        } else {
+            console.log(`[debug]: Rewrite state to localStorage. Old app version was ${savedState.version ? savedState.version.join('.') : '[not installed]'}.`)
+        }
     }
+} else {
+    console.log("[debug]: Didn't load state from localStorage because state.load flag is disabled.")
 }
 
 export default state;

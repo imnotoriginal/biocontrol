@@ -27,9 +27,21 @@ const getAdvice = (i, config) => {
 
     const duration = calculateDuration(i, config);
     const goToSleepDate = subtractDates(wakeUpDate, duration)
-    const timeout = goToSleepDate.getTime() - Date.now();
+    let timeout = goToSleepDate.getTime() - Date.now();
 
-    return { preparedTime: prepareTime(goToSleepDate), timeout: (timeout < 0 ? -timeout : timeout) };
+    // Set notification to the next day
+    if (timeout < 0) {
+        timeout = 86400000 - timeout;
+    }
+
+    return { preparedTime: prepareTime(goToSleepDate), timeout };
+}
+
+const limitTimeInput = (time, limit) => {
+
+    time < 0 && (time = 0);
+    console.log(time);
+    return time > limit ? limit : time;
 }
 
 export default (state, action, globalState) => {
@@ -53,8 +65,8 @@ export default (state, action, globalState) => {
             return {
                 ...state,
                 timeToWakeUp: {
-                    hours: action.payload.hours === undefined ? state.timeToWakeUp.hours : action.payload.hours,
-                    minutes: action.payload.minutes === undefined ? state.timeToWakeUp.minutes : action.payload.minutes
+                    hours: action.payload.hours === undefined ? state.timeToWakeUp.hours : limitTimeInput(action.payload.hours, 23),
+                    minutes: action.payload.minutes === undefined ? state.timeToWakeUp.minutes : limitTimeInput(action.payload.minutes, 59)
                 }
             }
 

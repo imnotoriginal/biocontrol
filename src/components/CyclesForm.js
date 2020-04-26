@@ -7,11 +7,11 @@ const CyclesForm = ({ timeToWakeUp, setTimeToWakeUp, calculateCycles }) => (
         <h2 className="cycles__title">Время пробуждения:</h2>
         <form className="cycles-form">
             <label>
-                <input type="text" className="cycles-form__form-control" value={timeToWakeUp.hours} onChange={e => setTimeToWakeUp({hours: e.target.value})} />
+                <input type="number" className="cycles-form__form-control" value={timeToWakeUp.hours} onChange={e => setTimeToWakeUp({hours: e.target.value})} />
                 Часов
             </label>
             <label>
-                <input type="text" className="cycles-form__form-control" value={timeToWakeUp.minutes} onChange={e => setTimeToWakeUp({minutes: e.target.value})} />
+                <input type="number" className="cycles-form__form-control" value={timeToWakeUp.minutes} onChange={e => setTimeToWakeUp({minutes: e.target.value})} />
                 Минут
             </label>
         </form>
