@@ -1,7 +1,7 @@
 import constants from "../constants";
 import { sub as subtractDates } from "date-fns"
 
-const preparedTime = date => {
+const prepareTime = date => {
     date = [date.getHours(), date.getMinutes()];
     return `${date[0] < 10 ? "0"+date[0] : date[0]}:${date[1] < 10 ? "0"+date[1] : date[1]}`;
 }
@@ -27,8 +27,9 @@ const getAdvice = (i, config) => {
 
     const duration = calculateDuration(i, config);
     const goToSleepDate = subtractDates(wakeUpDate, duration)
+    const timeout = goToSleepDate.getTime() - Date.now();
 
-    return preparedTime(goToSleepDate);
+    return { preparedTime: prepareTime(goToSleepDate), timeout: (timeout < 0 ? -timeout : timeout) };
 }
 
 export default (state, action, globalState) => {
@@ -49,7 +50,6 @@ export default (state, action, globalState) => {
             return { ...state, advices }
 
         case constants.SET_TIME_TO_GET_UP:
-
             return {
                 ...state,
                 timeToWakeUp: {

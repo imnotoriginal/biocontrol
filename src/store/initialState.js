@@ -21,16 +21,15 @@ let state = {
     },
     notification: {
         timeOutKey: 0,
-        permission: null
     },
     debug: false,
     version: [1,0,0]
 }
 
 if (window && window.localStorage && !state.debug) {
-    const savedState = window.localStorage.getItem('app-state');
-    if ((savedState !== null) && savedState.version && savedState.version[0] >= state.version[0]) {
-        state = JSON.parse(savedState);
+    const savedState = JSON.parse(window.localStorage.getItem('app-state'));
+    if ((savedState !== null) && (savedState.version !== undefined) && savedState.version[0] >= state.version[0]) {
+        state = savedState;
     }
 }
 

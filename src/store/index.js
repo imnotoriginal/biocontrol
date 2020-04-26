@@ -7,15 +7,15 @@ export const Provider = ({ initialState, reducer, children }) => {
 
     return (
         <Context.Provider value={{state, dispatch}}>
-            {children}    
+            {children}
         </Context.Provider>
     )
 };
 
-const wrapActions = (actions, dispatch) => {
+const wrapActions = (actions, dispatch, state) => {
     const result = {};
     for(const key in actions) {
-        result[key] = (...args) => actions[key](...args)(dispatch);
+        result[key] = (...args) => actions[key](...args)(dispatch, state);
     }
     return result;
 }
@@ -26,7 +26,7 @@ export const connect = (mapStateToProps=false, actions={}) => Component => props
             <Component
                 {...props}
                 {...(mapStateToProps && mapStateToProps(state))}
-                {...wrapActions(actions, dispatch)}
+                {...wrapActions(actions, dispatch, state)}
             />
         )}
     </Context.Consumer>
