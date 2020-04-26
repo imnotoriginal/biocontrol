@@ -23,7 +23,7 @@ let state = {
         timeoutKey: 0,
     },
     load: true,
-    version: [1,0,1]
+    version: [1,0,2]
 }
 
 const checkVersions = (v1, v2) => {
